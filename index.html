@@ -8,6 +8,39 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<!DOCTYPE html>
+<!-- Add this logic to your existing index.html -->
+
+<!-- USER LOGIN HEADER -->
+<div id="logged-user"></div>
+
+<script>
+const currentUser = prompt("Enter your email/user name");
+
+function getUserTransactions() {
+  return transactions.filter(t => t.user === currentUser);
+}
+
+function addTransaction() {
+  const desc = document.getElementById('f-desc').value.trim();
+
+  transactions.push({
+    id: Date.now(),
+    user: currentUser,
+    desc: desc,
+    amount: amount,
+    date: date,
+    category: cat,
+    mode: mode,
+    note: note
+  });
+
+  save();
+}
+
+document.getElementById('logged-user').innerHTML =
+  'Logged in as: ' + currentUser;
+</script>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -903,6 +936,7 @@ function esc(str) {
 document.getElementById('f-date').value = new Date().toISOString().split('T')[0];
 renderDashboard();
 renderRecent();
+
 </script>
 </body>
 </html>
